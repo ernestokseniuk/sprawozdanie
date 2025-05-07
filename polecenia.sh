@@ -22,8 +22,8 @@ git branch -M main
 git push -u origin main
 
 
-docker tag weather-app:latest ernestokseniuk/sprawozdanie:latest
+docker tag weather-app:latest emistrz28/sprawozdanie:latest
 docker login
-docker push ernestokseniuk/sprawozdanie:latest
+docker push emistrz28/sprawozdanie:latest
 
 read -p "Naciśnij dowolny klawisz, aby zakończyć skrypt..." -n1 -s
