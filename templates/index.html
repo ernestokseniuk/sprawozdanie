@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}Aplikacja Pogodowa - Wybór miasta{% endblock %}
+
+{% block content %}
+<form action="/weather" method="get">
+    <div>
+        <label for="country">Wybierz kraj:</label>
+        <select id="country" name="country" required onchange="updateCities()">
+            <option value="">-- Wybierz kraj --</option>
+            {% for country in cities.keys() %}
+                <option value="{{ country }}">{{ country|capitalize }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    
+    <div>
+        <label for="city">Wybierz miasto:</label>
+        <select id="city" name="city" required>
+            <option value="">-- Najpierw wybierz kraj --</option>
+        </select>
+    </div>
+    
+    <div>
+        <button type="submit">Sprawdź pogodę</button>
+    </div>
+</form>
+{% endblock %}
+
+{% block scripts %}
+function updateCities() {
+    const countrySelect = document.getElementById('country');
+    const citySelect = document.getElementById('city');
+    const country = countrySelect.value;
+    
+    // Wyczyść obecne miasta
+    citySelect.innerHTML = '';
+    
+    if (country) {
+        // Pobierz miasta dla wybranego kraju
+        fetch(`/api/cities/${country}`)
+            .then(response => response.json())
+            .then(cities => {
+                // Dodaj opcję domyślną
+                const defaultOption = document.createElement('option');
+                defaultOption.value = '';
+                defaultOption.textContent = '-- Wybierz miasto --';
+                citySelect.appendChild(defaultOption);
+                
+                // Dodaj miasta do listy
+                cities.forEach(city => {
+                    const option = document.createElement('option');
+                    option.value = city;
+                    option.textContent = city;
+                    citySelect.appendChild(option);
+                });
+            })
+            .catch(error => {
+                console.error('Błąd podczas pobierania miast:', error);
+            });
+    } else {
+        // Jeśli nie wybrano kraju, pokaż domyślną opcję
+        const option = document.createElement('option');
+        option.value = '';
+        option.textContent = '-- Najpierw wybierz kraj --';
+        citySelect.appendChild(option);
+    }
+}
+{% endblock %}

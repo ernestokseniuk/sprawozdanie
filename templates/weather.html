@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Pogoda dla {{ weather.city }}{% endblock %}
+
+{% block content %}
+<div class="weather-card">
+    <h2>Pogoda dla {{ weather.city }}, {{ weather.country|capitalize }}</h2>
+    
+    <div>
+        <img class="weather-icon" src="https://openweathermap.org/img/wn/{{ weather.icon }}@2x.png" alt="{{ weather.description }}">
+        <p>{{ weather.description|capitalize }}</p>
+    </div>
+    
+    <div class="weather-details">
+        <div class="weather-detail">
+            <h3>Temperatura</h3>
+            <p>{{ weather.temperature }}°C</p>
+            <p>Odczuwalna: {{ weather.feels_like }}°C</p>
+        </div>
+        
+        <div class="weather-detail">
+            <h3>Wilgotność</h3>
+            <p>{{ weather.humidity }}%</p>
+        </div>
+        
+        <div class="weather-detail">
+            <h3>Ciśnienie</h3>
+            <p>{{ weather.pressure }} hPa</p>
+        </div>
+        
+        <div class="weather-detail">
+            <h3>Wiatr</h3>
+            <p>{{ weather.wind_speed }} m/s</p>
+        </div>
+        
+        <div class="weather-detail">
+            <h3>Zachmurzenie</h3>
+            <p>{{ weather.clouds }}%</p>
+        </div>
+    </div>
+    
+    <div style="margin-top: 20px;">
+        <a href="/" style="text-decoration: none;">
+            <button>Wróć do wyboru miasta</button>
+        </a>
+    </div>
+</div>
+{% endblock %}

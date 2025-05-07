@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Błąd{% endblock %}
+
+{% block content %}
+<div class="error">
+    <h2>Wystąpił błąd</h2>
+    <p>{{ message }}</p>
+    
+    <div style="margin-top: 20px;">
+        <a href="/" style="text-decoration: none;">
+            <button>Wróć do strony głównej</button>
+        </a>
+    </div>
+</div>
+{% endblock %}
