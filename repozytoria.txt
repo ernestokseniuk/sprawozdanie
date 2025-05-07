@@ -1,0 +1,5 @@
+Github:
+https://hub.docker.com/r/emistrz28/sprawozdanie/tags
+
+dockerhub:
+https://hub.docker.com/r/emistrz28/sprawozdanie/tags
