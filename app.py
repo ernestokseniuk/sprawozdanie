@@ -86,7 +86,7 @@ if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     
     # Logowanie informacji o uruchomieniu
-    author = "Jan Kowalski"  # Zmień na swoje imię i nazwisko
+    author = "Ernest Okseniuk"
     start_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     
     logger.info(f"=== INFORMACJE O URUCHOMIENIU ===")
